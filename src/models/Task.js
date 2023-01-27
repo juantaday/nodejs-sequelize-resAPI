@@ -1,10 +1,10 @@
 import {DataTypes} from "sequelize";
 
-import {sequelize} from "../database/database.js"
+import {connection} from "../database/database.js"
 
 
 
-export const Task = sequelize.define('task',{
+export const Task = connection.define('task',{
     id:{
         type:DataTypes.INTEGER,
         primaryKey:true,

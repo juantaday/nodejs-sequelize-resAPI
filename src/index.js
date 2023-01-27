@@ -1,12 +1,12 @@
 import  app from "./app.js";
-import  {sequelize} from"./database/database.js";
+import  {connection} from"./database/database.js";
 
 
 async function main(){
     try {
         console.log('va connectarse');
-        await sequelize.sync({force: true});
-        await sequelize.authenticate();
+        await connection.sync({force: false});
+        await connection.authenticate();
         console.log('Connection has been established successfully.');
 
         app.listen(4000);

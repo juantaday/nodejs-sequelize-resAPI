@@ -1,5 +1,6 @@
 import {Proyect} from "../models/Proyect.js"
 import  handleHttp from "../utils/error.handle.js"
+import {Task} from "../models/Task.js";
 
 export const createProyect = async (req, res, next)=>{
     try {
@@ -64,7 +65,6 @@ export const deleteProyect =  async (req,res, next)=>{
         handleHttp(res,'ERROR_CONTROLLER_DELETE_PROYECT',error);
     }
    
-
 };
 
 export  const getProyectById= async (req,res,next)=>{
@@ -76,4 +76,17 @@ export  const getProyectById= async (req,res,next)=>{
    } catch (error) {
     handleHttp(res,'ERROR_CONTROLLER_GET_BYID_PROYECT',error);
    }
+};
+
+export const getTaskByProyectId =async(req, res, next)=>{
+    try {
+        var {id}= req.params;
+
+        const data  = await Task.findAll({where:{proyectId:id}});
+        res.send(data);
+     
+    } catch (error) {
+        handleHttp(res,'ERROR_GET_TASK_BY_PROYECTID_CONTROLLER',error);
+    }
+
 };
